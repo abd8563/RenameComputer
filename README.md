@@ -10,6 +10,6 @@ set the execution policy to RemoteSigned:
      
      Set-ExecutionPolicy RemoteSigned
 
-after job done set back the execution defult policy:
+after job done set back the execution to defult policy:
  
      Set-ExecutionPolicy Restricted
