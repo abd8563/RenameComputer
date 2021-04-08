@@ -5,10 +5,10 @@ Remove ".txt" from computers file.
 
 CSV file should contain  [old,new] header.
 
-set the execution policy by typing this into your PowerShell window (Run as Administrator):
+to set the execution policy to RemoteSigned:
      
      Set-ExecutionPolicy RemoteSigned
 
-set back the execution policy:
+to set back the execution defult policy:
  
      Set-ExecutionPolicy Restricted
