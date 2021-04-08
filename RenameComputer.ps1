@@ -4,7 +4,7 @@
 clear
 
 #Get Credential to change computer name
-echo "Set Your Credential to changing computer Name"
+echo "Set Your Credential"
 start-sleep -s 2
 $credential = Get-Credential 
 clear
@@ -16,7 +16,7 @@ $Test = Test-Path $DirLog
 
 
 If ($Test -eq "True") {
-Write-Host "Folder Already Exist" }
+Write-Host "Folder already exist" }
 
 else {
 Write-Host ("Create ChangeComputer In SystemDrive")
@@ -25,7 +25,7 @@ Write-Host ("Create ChangeComputer In SystemDrive")
 
 start-sleep -s 2
 
-(echo ("Log File Saved in C:\ScriptLogs\ChangeComputer"))
+(echo ("Log file save in C:\ScriptLogs\ChangeComputer"))
 Start-Sleep -s 2
 Clear
 
