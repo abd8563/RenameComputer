@@ -1,50 +1,70 @@
-#change computer name in domain or workgroup
-#create CSV file contain old,new computer name
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                change computer name in domain or workgroup
+                https://github.com/abd8563/RenameComputer.git
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#Set LogFolder
+
+$delay = ("start-sleep -s 2")
+$logspath = "$env:HOMEDRIVE\Renamelog"
+
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+clear
+write-host ("Make csv file before continuing the script")
+Invoke-Expression $delay
 clear
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #Get Credential to change computer name
 echo "Set Your Credential"
-start-sleep -s 2
 $credential = Get-Credential 
 clear
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #Create folder for log files
-$DirLog = "C:\ScriptLogs\ChangeComputer"
-$Test = Test-Path $DirLog
+$testdir = Test-Path $logspath
+
+If ($testdir -eq "False")
+    {Write-Host "folder exist"}
+else
+    {Write-Host ("Create folder " + $logspath)
+    Invoke-Expression $delay
+    (mkdir $logspath) }
 
 
-If ($Test -eq "True") {
-Write-Host "Folder already exist" }
-
-else {
-Write-Host ("Create ChangeComputer In SystemDrive")
-(mkdir C:\ScriptLogs\ChangeComputer) }
-
-
-start-sleep -s 2
-
-(echo ("Log file save in C:\ScriptLogs\ChangeComputer"))
-Start-Sleep -s 2
+write-host ("Log file save in " + $logspath)
+Invoke-Expression $delay
 Clear
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+$FileName = (Get-Date).tostring("dd-MM-yyyy-hh-mm-ss")            
+$log = New-Item -itemType File -Path $logspath -Name ($FileName  + ".log")
+
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #Get csv Files contain old,new computer name
 echo "Select your CSV file"
-start-sleep -s 2
 $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
 $OpenFileDialog.filter = "CSV (*.csv) | *.csv"
 $OpenFileDialog.ShowDialog() | Out-Null
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#Rename Computers
 
-$FileName = (Get-Date).tostring("dd-MM-yyyy-hh-mm-ss")            
-$log = New-Item -itemType File -Path c:\ScriptLogs\ChangeComputer -Name ($FileName  + ".log")
 echo ("**** Computer Rename ****") >> $log
-
-
-#Rename Computer Names
 echo ---------------------------------------------------------- >> $log
 date >> $log
 
@@ -54,8 +74,8 @@ foreach ($server in $comps) {Rename-Computer -ComputerName $server.Old -NewName 
 echo ---------------------------------------------------------- >> $log
 echo "Done" >> $log
 Write-Host DONE
+Write-Host "Open log file"
+Invoke-Expression $delay
+Start $log
 
-#Open log folder
-Start C:\ScriptLogs\ChangeComputer
-
-#https://github.com/Meysamabdizadeh/RenameComputers
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
