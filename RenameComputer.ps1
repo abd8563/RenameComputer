@@ -64,7 +64,7 @@ $OpenFileDialog.ShowDialog() | Out-Null
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #Rename Computers
 
-echo ("**** Computer Rename ****") >> $log
+echo ("**** Rename Computers ****") >> $log
 echo ---------------------------------------------------------- >> $log
 date >> $log
 
