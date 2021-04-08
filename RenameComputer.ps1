@@ -1,4 +1,4 @@
-﻿#This script can change computer name in domain or workgroup
+#change computer name in domain or workgroup
 #create CSV file contain old,new computer name
 
 clear
@@ -29,8 +29,6 @@ start-sleep -s 2
 Start-Sleep -s 2
 Clear
 
-#Create Log Files
-$Name = @()
 
 #Get csv Files contain old,new computer name
 echo "Select your CSV file"
@@ -42,8 +40,8 @@ $OpenFileDialog.ShowDialog() | Out-Null
 
 
 $FileName = (Get-Date).tostring("dd-MM-yyyy-hh-mm-ss")            
-$log = New-Item -itemType File -Path c:\ScriptLogs\ChangeComputer -Name ($FileName  +  $Name + ".log")
-echo ("****$Name Computer Rename****") >> $log
+$log = New-Item -itemType File -Path c:\ScriptLogs\ChangeComputer -Name ($FileName  + ".log")
+echo ("**** Computer Rename ****") >> $log
 
 
 #Rename Computer Names
@@ -59,3 +57,5 @@ Write-Host DONE
 
 #Open log folder
 Start C:\ScriptLogs\ChangeComputer
+
+#https://github.com/Meysamabdizadeh/RenameComputers
