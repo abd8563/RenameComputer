@@ -1,4 +1,4 @@
-#Rename Computer
+#RenameComputer
 
 This simple Powershell script can change computers name in domain remotely without any third partty app.
 
