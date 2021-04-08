@@ -1,14 +1,14 @@
 #Rename Computer
 
-This Powershell script can change computer name in domain remotely, with csv file contain old and new computer name.
-Remove ".txt" from computers file.
+This simple Powershell script can change computers name in domain remotely without any third partty app.
 
+to use script:
 CSV file should contain  [old,new] header.
 
-to set the execution policy to RemoteSigned:
+set the execution policy to RemoteSigned:
      
      Set-ExecutionPolicy RemoteSigned
 
-to set back the execution defult policy:
+after job done set back the execution defult policy:
  
      Set-ExecutionPolicy Restricted
